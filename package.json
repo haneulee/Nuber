@@ -4,7 +4,9 @@
   "description": "It's a Uber application for code study",
   "main": "n",
   "scripts": {
-    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
+    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql",
+    "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
+    "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   "dependencies": {
     "@types/node": "^12.0.0",
     "cors": "^2.8.5",
+    "gql-merge": "0.0.6",
+    "graphql-to-typescript": "^0.1.2",
     "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
     "helmet": "^3.18.0",

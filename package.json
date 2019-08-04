@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/node": "^12.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "gql-merge": "0.0.6",
     "graphql-to-typescript": "^0.1.2",
     "graphql-tools": "^4.0.4",

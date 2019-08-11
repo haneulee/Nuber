@@ -16,16 +16,16 @@ class Place extends BaseEntity {
   name: string;
 
   @Column({ type: "double precision", default: 0 })
-  lat: string;
+  lat: number;
 
   @Column({ type: "double precision", default: 0 })
-  lng: string;
+  lng: number;
 
   @Column({ type: "text" })
   address: string;
 
   @Column({ type: "boolean", default: false })
-  isFav: string;
+  isFav: boolean;
 
   @CreateDateColumn()
   createdAt: string;

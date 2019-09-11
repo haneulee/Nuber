@@ -15,6 +15,7 @@ type User {
   isDriving: Boolean
   isRiding: Boolean!
   isTaken: Boolean!
+  fbId: String
   chat: Chat
   messages: [Message]
   verifications: [Verification]

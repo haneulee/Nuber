@@ -1,0 +1,12 @@
+type EmailSignInConnectResponse {
+  ok: Boolean!
+  error: String
+  token: String
+}
+
+type Mutation {
+  EmailSignInConnect(
+    email: String!
+    password: String!
+  ): EmailSignInConnectResponse!
+}

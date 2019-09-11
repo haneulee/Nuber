@@ -5,6 +5,8 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
+  ManyToOne,
+  OneToMany,
   BeforeInsert,
   BeforeUpdate
 } from "typeorm";
@@ -12,6 +14,9 @@ import { IsEmail } from "class-validator";
 import bcrypt from "bcrypt";
 
 const BCRYPT_ROUNDS = 10;
+
+import Chat from "./Chat";
+import Message from "./Message";
 
 @Entity()
 class User extends BaseEntity {
@@ -59,6 +64,12 @@ class User extends BaseEntity {
 
   @Column({ type: "boolean", default: false })
   isTaken: boolean;
+
+  @ManyToOne(type => Chat, chat => chat.participants)
+  chat: Chat;
+
+  @OneToMany(type => Message, message => message.user)
+  messages: Message[];
 
   @Column({ type: "double precision" })
   lastLng: number;

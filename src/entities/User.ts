@@ -17,6 +17,8 @@ const BCRYPT_ROUNDS = 10;
 
 import Chat from "./Chat";
 import Message from "./Message";
+import Verification from "./Verification";
+import Ride from "./Ride";
 
 @Entity()
 class User extends BaseEntity {
@@ -70,6 +72,15 @@ class User extends BaseEntity {
 
   @OneToMany(type => Message, message => message.user)
   messages: Message[];
+
+  @OneToMany(type => Verification, verification => verification.user)
+  verifications: Verification[];
+
+  @OneToMany(type => Ride, ride => ride.driver)
+  ridesAsDriver: Ride[];
+
+  @OneToMany(type => Ride, ride => ride.passenger)
+  ridesAsPassenger: Ride[];
 
   @Column({ type: "double precision" })
   lastLng: number;

@@ -2,10 +2,11 @@ import { Resolvers } from "../../../types/resolvers";
 import { CompleteEmailVerificationResponse, CompletePhoneVerificationMutationArgs } from "../../../types/graph";
 import User from "../../../entities/User";
 import Verification from "../../../entities/Verification";
+import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
     Mutation: {
-        CompleteEmailVerification: async (_, args: CompletePhoneVerificationMutationArgs
+        CompleteEmailVerification: privateResolver(async (_, args: CompletePhoneVerificationMutationArgs
             , { req }): Promise<CompleteEmailVerificationResponse> => {
 
             const user: User = req.user;
@@ -41,7 +42,7 @@ const resolvers: Resolvers = {
                     error: "No email to verify"
                 };
             }
-        }
+        })
     }
 }
 

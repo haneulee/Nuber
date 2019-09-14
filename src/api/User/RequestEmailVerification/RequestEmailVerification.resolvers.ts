@@ -3,11 +3,12 @@ import { RequestEmailVerificationResponse } from "../../../types/graph";
 import User from "../../../entities/User";
 import Verification from "../../../entities/Verification";
 import { sendVerificationEmail } from "../../../utils/sendEmail";
+import privateResolver from "../../../utils/privateResolver";
 
 
 const resolvers: Resolvers = {
     Mutation: {
-        RequestEmailVerification: async (_, __, { req }): Promise<RequestEmailVerificationResponse> => {
+        RequestEmailVerification: privateResolver(async (_, __, { req }): Promise<RequestEmailVerificationResponse> => {
             const user: User = req.user;
 
             if (user.email) {
@@ -41,7 +42,7 @@ const resolvers: Resolvers = {
                     error: "Your user has no email to verify"
                 }
             }
-        }
+        })
     }
 }
 

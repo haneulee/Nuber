@@ -44,12 +44,13 @@ type Ride {
   updatedAt: String
 }
 
-type CompleteEmailVerificationResponse {
+type AddPlaceResponse {
   ok: Boolean!
   error: String
 }
 
 type Mutation {
+  AddPlace(name: String!, lat: Float!, lng: Float!, address: String!, isFav: Boolean!): AddPlaceResponse!
   CompleteEmailVerification(key: String!): CompleteEmailVerificationResponse!
   CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
@@ -60,6 +61,11 @@ type Mutation {
   StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
   ToggleDrivingMode: ToggleDrivingModeResponse!
   UpdateMyProfile(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!): UpdateMyProfileResponse!
+}
+
+type CompleteEmailVerificationResponse {
+  ok: Boolean!
+  error: String
 }
 
 type CompletePhoneVerificationResponse {

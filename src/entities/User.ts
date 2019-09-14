@@ -18,6 +18,7 @@ const BCRYPT_ROUNDS = 10;
 import Chat from "./Chat";
 import Message from "./Message";
 import Ride from "./Ride";
+import Place from "./Place";
 
 @Entity()
 class User extends BaseEntity {
@@ -77,6 +78,9 @@ class User extends BaseEntity {
 
   @OneToMany(type => Ride, ride => ride.passenger)
   ridesAsPassenger: Ride[];
+
+  @OneToMany(type => Place, place => place.user)
+  places: Place[];
 
   @Column({ type: "text", nullable: true })
   fbId: string;

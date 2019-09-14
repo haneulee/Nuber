@@ -17,6 +17,7 @@ type User {
   isTaken: Boolean!
   fbId: String
   chat: Chat
+  places: [Place]
   messages: [Message]
   ridesAsDriver: [Ride]
   ridesAsPassenger: [Ride]

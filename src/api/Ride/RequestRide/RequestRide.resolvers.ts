@@ -7,39 +7,41 @@ import Ride from "../../../entities/Ride";
 
 const resolvers: Resolvers = {
     Mutation: {
-        RequestRide: privateResolver(async (
-            _,
-            args: RequestRideMutationArgs,
-            { req, pubSub }): Promise<RequestRideResponse> => {
-
-            const user: User = req.user;
-            if (!user.isRiding) {
-                try {
-                    const ride: any = await Ride.create({ ...args, passenger: user }).save();
-                    pubSub.publish("rideRequest", { NearbyRideSubscription: ride });
-                    return {
-                        ok: true,
-                        error: null,
-                        ride
+        RequestRide: privateResolver(
+            async (
+                _,
+                args: RequestRideMutationArgs,
+                { req, pubSub }
+            ): Promise<RequestRideResponse> => {
+                const user: User = req.user;
+                if (!user.isRiding) {
+                    try {
+                        const ride: any = await Ride.create({ ...args, passenger: user }).save();
+                        pubSub.publish("rideRequest", { NearbyRideSubscription: ride });
+                        user.isRiding = true;
+                        user.save();
+                        return {
+                            ok: true,
+                            error: null,
+                            ride
+                        };
+                    } catch (error) {
+                        return {
+                            ok: false,
+                            error: error.message,
+                            ride: null
+                        };
                     }
-                } catch (error) {
+                } else {
                     return {
                         ok: false,
-                        error: error.message,
+                        error: "You can't request two rides",
                         ride: null
-                    }
-                }
-            } else {
-                return {
-                    ok: false,
-                    error: "You can't request two rides",
-                    ride: null
+                    };
                 }
             }
-
-
-        })
+        )
     }
-}
+};
 
 export default resolvers

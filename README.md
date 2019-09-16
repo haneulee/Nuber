@@ -26,11 +26,11 @@
 - [x] Report Location / Orientation
 - [x] Add Place
 - [x] Edit Place
-- [ ] Delete Place
-- [ ] Get My Place
-- [ ] See Nearby Drivers
-- [ ] Subscribe to Nearby Drivers
-- [ ] Request a Ride
+- [x] Delete Place
+- [x] Get My Places
+- [x] See Nearby Drivers
+- [x] Subscribe to Nearby Drivers
+- [x] Request a Ride
 - [ ] Get Nearby Ride Requests
 - [ ] Subscribe to Nearby Ride Requests
 - [ ] Subscribe to Ride Status

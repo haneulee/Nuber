@@ -39,7 +39,7 @@
 - [x] Create a chat room
 - [x] Get Chat Room Messages
 - [x] Send a Chat Message
-- [ ] Subscribe to Chat Room Messages
+- [x] Subscribe to Chat Room Messages
 
 ## Code Challenge
 

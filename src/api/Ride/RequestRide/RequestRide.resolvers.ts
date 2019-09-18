@@ -14,7 +14,7 @@ const resolvers: Resolvers = {
                 { req, pubSub }
             ): Promise<RequestRideResponse> => {
                 const user: User = req.user;
-                if (!user.isRiding) {
+                if (!user.isRiding && !user.isDriving) {
                     try {
                         const ride: any = await Ride.create({ ...args, passenger: user }).save();
                         pubSub.publish("rideRequest", { NearbyRideSubscription: ride });
@@ -35,7 +35,7 @@ const resolvers: Resolvers = {
                 } else {
                     return {
                         ok: false,
-                        error: "You can't request two rides",
+                        error: "You can't request two rides or drive and request",
                         ride: null
                     };
                 }

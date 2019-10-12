@@ -24,12 +24,12 @@ const resolvers: Resolvers = {
                     payload: phoneNumber,
                     target: "PHONE"
                 }).save();
-
-                await sendVerificationSMS(newVerification.payload, newVerification.target);
+                console.log("startPhoneVerifiation ======= : ", newVerification)
+                await sendVerificationSMS(newVerification.payload, newVerification.key);
                 return {
                     ok: true,
                     error: null
-                }
+                };
             } catch (error) {
                 return {
                     ok: false,
@@ -39,4 +39,5 @@ const resolvers: Resolvers = {
         }
     }
 };
+
 export default resolvers;

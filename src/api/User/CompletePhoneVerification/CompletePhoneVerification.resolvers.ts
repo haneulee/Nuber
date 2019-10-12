@@ -1,7 +1,10 @@
-import { Resolvers } from "../../../types/resolvers";
-import { CompletePhoneVerificationMutationArgs, CompletePhoneVerificationResponse } from "../../../types/graph";
-import Verification from "../../../entities/Verification";
 import User from "../../../entities/User";
+import Verification from "../../../entities/Verification";
+import {
+    CompletePhoneVerificationMutationArgs,
+    CompletePhoneVerificationResponse
+} from "../../../types/graph";
+import { Resolvers } from "../../../types/resolvers";
 import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
@@ -16,6 +19,7 @@ const resolvers: Resolvers = {
                     payload: phoneNumber,
                     key
                 });
+                console.log("check ====== !!! : ", phoneNumber, key, args, verification)
                 if (!verification) {
                     return {
                         ok: false,
@@ -39,7 +43,7 @@ const resolvers: Resolvers = {
                 if (user) {
                     user.verifiedPhoneNumber = true;
                     user.save();
-                    const token = createJWT(user.id)
+                    const token = createJWT(user.id);
                     return {
                         ok: true,
                         error: null,
@@ -62,7 +66,5 @@ const resolvers: Resolvers = {
         }
     }
 };
-
-
 
 export default resolvers;

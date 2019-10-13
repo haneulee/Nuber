@@ -1,6 +1,6 @@
 type User {
   id: Int!
-  email: String!
+  email: String
   verifiedEmail: Boolean!
   firstName: String!
   lastName: String!
@@ -12,7 +12,7 @@ type User {
   createdAt: String!
   updatedAt: String
   fullName: String
-  isDriving: Boolean
+  isDriving: Boolean!
   isRiding: Boolean!
   isTaken: Boolean!
   fbId: String

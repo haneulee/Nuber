@@ -42,7 +42,7 @@ type Mutation {
   RequestEmailVerification: RequestEmailVerificationResponse!
   StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
   ToggleDrivingMode: ToggleDrivingModeResponse!
-  UpdateMyProfile(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!): UpdateMyProfileResponse!
+  UpdateMyProfile(firstName: String!, lastName: String!, email: String!, password: String, profilePhoto: String!, age: Int): UpdateMyProfileResponse!
 }
 
 type Chat {
@@ -145,6 +145,7 @@ type Ride {
 type UpdateRideStatusResponse {
   ok: Boolean!
   error: String
+  rideId: Int
 }
 
 enum StatusOptions {
@@ -208,7 +209,7 @@ type RequestEmailVerificationResponse {
 
 type User {
   id: Int!
-  email: String!
+  email: String
   verifiedEmail: Boolean!
   firstName: String!
   lastName: String!
@@ -220,7 +221,7 @@ type User {
   createdAt: String!
   updatedAt: String
   fullName: String
-  isDriving: Boolean
+  isDriving: Boolean!
   isRiding: Boolean!
   isTaken: Boolean!
   fbId: String

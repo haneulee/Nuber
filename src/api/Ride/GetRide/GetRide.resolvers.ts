@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
             try {
                 const ride: any = await Ride.findOne({
                     id: args.rideId
-                });
+                }, { relations: ["passenger", "driver"] });
 
                 console.log("===== ", ride.passengerId, user.id, ride.driverId)
                 if (ride) {

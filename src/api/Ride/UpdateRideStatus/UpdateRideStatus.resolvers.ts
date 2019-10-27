@@ -23,8 +23,7 @@ const resolvers: Resolvers = {
                             ride = await Ride.findOne({
                                 id: args.rideId,
                                 status: "REQUESTING"
-                            },
-                                { relations: ["passenger"] });
+                            }, { relations: ["passenger", "driver"] });
                             if (ride) {
                                 ride.driver = user;
                                 user.isTaken = true;
@@ -34,13 +33,13 @@ const resolvers: Resolvers = {
                                     passenger: ride.passenger
                                 }).save();
                                 ride.chat = chat;
-                                ride.save();
+                                await ride.save();
                             }
                         } else {
                             ride = await Ride.findOne({
                                 id: args.rideId,
                                 driver: user
-                            });
+                            }, { relations: ["passenger", "driver"] });
                         }
                         if (ride) {
                             ride.status = args.status;

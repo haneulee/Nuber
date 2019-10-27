@@ -63,6 +63,7 @@ type Message {
   text: String!
   chat: Chat!
   user: User!
+  userId: Int!
   chatId: Int
   createdAt: String!
   updatedAt: String
@@ -130,7 +131,7 @@ type Ride {
   dropOffLat: Float!
   dropOffLng: Float!
   price: Float!
-  driver: User!
+  driver: User
   passenger: User!
   driverId: Int
   passengerId: Int!
